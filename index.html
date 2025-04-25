@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameFinder - Sua Plataforma de Recomendação de Jogos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="navbar">
+            <div class="logo" id="logo">
+                <i class="fas fa-gamepad"></i>
+                <span>GameFinder</span>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item" data-section="popular">Populares</li>
+                <li class="nav-item" data-section="trending">Em Destaque</li>
+                <li class="nav-item" data-section="upcoming">Lançamentos</li>
+                <li class="nav-item" data-section="favorites">Meus Favoritos</li>
+            </ul>
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Pesquisar jogos...">
+                <i class="fas fa-search" id="searchButton"></i>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Descubra seus próximos jogos favoritos</h1>
+                <p>Explore os melhores, mais populares e mais esperados jogos de todos os tempos.</p>
+                <button class="btn btn-primary">Explorar Agora</button>
+            </div>
+        </section>
+
+        <!-- Popular Games Section -->
+        <section id="popular">
+            <div class="section-header">
+                <h2 class="section-title">Jogos Populares</h2>
+            </div>
+            <div class="category-filters" id="popularFilters">
+                <div class="category-filter active" data-platform="all">Todos</div>
+                <div class="category-filter" data-platform="1">PC</div>
+                <div class="category-filter" data-platform="18">PlayStation 4</div>
+                <div class="category-filter" data-platform="186">Xbox Series S/X</div>
+                <div class="category-filter" data-platform="7">Nintendo Switch</div>
+            </div>
+            <div class="games-grid" id="popularGames">
+                <div class="loading">
+                    <div class="spinner"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trending Games Section -->
+        <section id="trending">
+            <div class="section-header">
+                <h2 class="section-title">Em Destaque</h2>
+                <div class="slider-controls">
+                    <div class="slider-control prev" data-slider="trending">
+                        <i class="fas fa-chevron-left"></i>
+                    </div>
+                    <div class="slider-control next" data-slider="trending">
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="trending-games" id="trendingGames">
+                <div class="loading">
+                    <div class="spinner"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Upcoming Games Section -->
+        <section id="upcoming">
+            <div class="section-header">
+                <h2 class="section-title">Próximos Lançamentos</h2>
+                <div class="slider-controls">
+                    <div class="slider-control prev" data-slider="upcoming">
+                        <i class="fas fa-chevron-left"></i>
+                    </div>
+                    <div class="slider-control next" data-slider="upcoming">
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="upcoming-games" id="upcomingGames">
+                <div class="loading">
+                    <div class="spinner"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Favorites Section -->
+        <section id="favorites">
+            <div class="section-header">
+                <h2 class="section-title">Meus Favoritos</h2>
+            </div>
+            <div class="games-grid" id="favoriteGames">
+                <div id="noFavorites" style="text-align: center; padding: 3rem 0; display: none;">
+                    <i class="fas fa-heart-broken" style="font-size: 3rem; color: var(--accent); margin-bottom: 1rem;"></i>
+                    <h3>Nenhum jogo favorito ainda</h3>
+                    <p>Adicione jogos aos seus favoritos clicando no ícone de coração em um jogo.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Game Details Modal -->
+    <div class="modal" id="gameDetailsModal">
+        <div class="modal-content">
+            <div class="modal-close" id="closeModal">
+                <i class="fas fa-times"></i>
+            </div>
+            <div class="game-details" id="gameDetails">
+                <div class="loading">
+                    <div class="spinner"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <div id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- Notification -->
+    <div class="notification" id="notification"></div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-about">
+                <div class="footer-logo">
+                    <i class="fas fa-gamepad"></i>
+                    <span>GameFinder</span>
+                </div>
+                <p>Sua plataforma de exploração e descoberta de jogos, com recomendações personalizadas, análises detalhadas e uma comunidade apaixonada por jogos.</p>
+                <div class="social-links">
+                    <div class="social-link"><i class="fab fa-facebook-f"></i></div>
+                    <div class="social-link"><i class="fab fa-twitter"></i></div>
+                    <div class="social-link"><i class="fab fa-instagram"></i></div>
+                    <div class="social-link"><i class="fab fa-discord"></i></div>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h3 class="footer-title">Links Rápidos</h3>
+                <ul>
+                    <li><a href="#popular">Jogos Populares</a></li>
+                    <li><a href="#trending">Em Destaque</a></li>
+                    <li><a href="#upcoming">Lançamentos</a></li>
+                    <li><a href="#favorites">Meus Favoritos</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3 class="footer-title">Categorias</h3>
+                <ul>
+                    <li><a href="#">Ação</a></li>
+                    <li><a href="#">Aventura</a></li>
+                    <li><a href="#">RPG</a></li>
+                    <li><a href="#">Esportes</a></li>
+                    <li><a href="#">Estratégia</a></li>
+                </ul>
+            </div>
+            <div class="footer-newsletter">
+                <h3 class="footer-title">Newsletter</h3>
+                <p>Inscreva-se para receber as últimas novidades e lançamentos de jogos.</p>
+                <div class="newsletter-form">
+                    <input type="email" placeholder="Seu email">
+                    <button><i class="fas fa-paper-plane"></i></button>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 GameFinder. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 
